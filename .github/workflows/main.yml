@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Угадай число</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #guessInput {
+      padding: 8px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Угадай число игра</h1>
+  <p>Я загадал число от 1 до 100. Попробуй угадать!</p>
+  <input type="text" id="guessInput">
+  <button onclick="checkGuess()">Отправить</button>
+  <p id="message"></p>
+
+  <script>
+    let secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      let userGuess = parseInt(document.getElementById("guessInput").value);
+      attempts++;
+
+      if (userGuess === secretNumber) {
+        document.getElementById("message").innerText = `Поздравляю! Ты угадал число ${secretNumber} за ${attempts} попыток!`;
+      } else if (userGuess < secretNumber) {
+        document.getElementById("message").innerText = "Попробуй число больше.";
+      } else if (userGuess > secretNumber) {
+        document.getElementById("message").innerText = "Попробуй число меньше.";
+      }
+    }
+  </script>
+</body>
+</html>
